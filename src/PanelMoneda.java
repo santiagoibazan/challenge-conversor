@@ -1,35 +1,45 @@
-import java.awt.Font;
+//import java.awt.Font;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 
 import javax.swing.*;
 
 
-public class PanelMoneda extends JPanel {
+public class PanelMoneda extends PanelConversor implements ActionListener{
 
 	private static final long serialVersionUID = 1L;
 	
-	private JLabel seleccion = new JLabel("Elija la moneda e ingrese la cantidad de dinero que desee convertir");
-	private JTextField valor = new JTextField();
-	private JComboBox<EnumMonedas> monedas = new JComboBox<EnumMonedas>();
+	private JComboBox<EnumMonedas> listaMonedasDe = new JComboBox<EnumMonedas>();
+	private JComboBox<EnumMonedas> listaMonedasA = new JComboBox<EnumMonedas>();
+	
+	public JButton convertir = new JButton("Convertir");
 	
 	public PanelMoneda() {
-		
-		setLayout(null);
-		
-		seleccion.setBounds(50, 50, 600, 25);
-		seleccion.setFont(new Font("Arial", Font.BOLD, 18));
-				
+		super("Monedas");
+	
 		for (EnumMonedas a: EnumMonedas.values()) {
-			monedas.addItem(a);
+			listaMonedasDe.addItem(a);
+			listaMonedasA.addItem(a);
 		}
-		
-		monedas.setBounds(100, 100, 200, 50);
-		valor.setBounds(320, 100, 200, 50);
-		
-		add(seleccion);
-		add(monedas);
-		add(valor);
+
+		listaMonedasDe.setBounds(210, 100, 200, 50);
+		listaMonedasA.setBounds(210, 300, 200, 50);
+
+		add(listaMonedasDe);
+		add(listaMonedasA);
+
 
 		setVisible(true);
 	}
+
+	@Override
+	public void actionPerformed(ActionEvent e) {
+		System.out.println(e.getActionCommand());
+		System.out.println(valor.getText());
+		System.out.println("ListaMonedasDe: "  + listaMonedasDe.getSelectedIndex());
+		System.out.println("ListaMonedasA: "  + listaMonedasA.getSelectedIndex());
+		}
 	
-}
+		
+	}
+	
