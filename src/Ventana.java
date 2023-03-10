@@ -22,6 +22,7 @@ public class Ventana extends JFrame implements ActionListener{
 	
 	JPanel panelCentral = new PanelCentral();
 	JPanel panelMoneda = new PanelMoneda();
+	JPanel panelTemperatura = new PanelTemperatura();
 	JPanel panelLongitud = new PanelLongitud();
 
 	private Ventana() {
@@ -71,6 +72,7 @@ public class Ventana extends JFrame implements ActionListener{
 				habilitarBotones();
 				tempBoton.setEnabled(false);
 				ocultarPaneles();
+				mostrarPanel(panelTemperatura);
 				break;
 			}
 			case "Longitud": {
@@ -100,6 +102,7 @@ public class Ventana extends JFrame implements ActionListener{
 		panelCentral.setVisible(false);
 		panelMoneda.setVisible(false);
 		panelLongitud.setVisible(false);
+		panelTemperatura.setVisible(false);
 
 	}
 	
