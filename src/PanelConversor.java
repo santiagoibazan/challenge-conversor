@@ -1,10 +1,11 @@
 import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.math.BigDecimal;
 
 import javax.swing.*;
 
-public class PanelConversor extends JPanel implements ActionListener {
+public abstract class PanelConversor extends JPanel implements ActionListener {
 
 	private static final long serialVersionUID = 1L;
 	
@@ -15,16 +16,15 @@ public class PanelConversor extends JPanel implements ActionListener {
 	protected JTextField valor = new JTextField();
 	public JButton convertir = new JButton("Convertir");
 	@SuppressWarnings("rawtypes")
-	private JComboBox listaEnumDe;
+	protected JComboBox listaEnumDe;
 	@SuppressWarnings("rawtypes")
-	private JComboBox listaEnumA;
-	private JLabel resultadoLabel;
+	protected JComboBox listaEnumA;
+	protected JLabel resultadoLabel;
 	private JLabel resultadoConversion;
 	private boolean primerResultado = false;
 	
 	@SuppressWarnings("unchecked")
 	public <E extends Enum<E>> PanelConversor(String nombre, E[] tipoEnum) {
-		
 
 		JLabel tituloConversor = new JLabel("Conversor de " + nombre);
 		listaEnumDe = new JComboBox<E>();
@@ -40,11 +40,11 @@ public class PanelConversor extends JPanel implements ActionListener {
 		tituloConversor.setBounds(50, 50, 600, 25);
 		tituloConversor.setFont(new Font("Arial", Font.BOLD, 18));
 		labelDe.setBounds(60, 100, 100, 50);
-		listaEnumA.setBounds(170, 100, 200, 50);
+		listaEnumDe.setBounds(170, 100, 200, 50);
 		labelCantidad.setBounds(60, 200, 100, 50);
 		valor.setBounds(170, 200, 200, 50);
 		labelA.setBounds(60, 300, 100, 50);
-		listaEnumDe.setBounds(170, 300, 200, 50);
+		listaEnumA.setBounds(170, 300, 200, 50);
 		convertir.setBounds(170, 400, 200, 50);
 		
 		convertir.addActionListener(this);
@@ -63,21 +63,22 @@ public class PanelConversor extends JPanel implements ActionListener {
 
 	@Override
 	public void actionPerformed(ActionEvent e) {
-		System.out.println(e.getActionCommand());
-		System.out.println(valor.getText());
-		System.out.println(listaEnumA.getSelectedIndex());
-		System.out.println(listaEnumDe.getSelectedIndex());
+		System.out.println(new BigDecimal("1").multiply(new BigDecimal("0.001")));
 		
-		if (!primerResultado) {
-			mostrarResultado();
-			primerResultado = true;
+		if (verificarValor(valor.getText())) {
+			if (!primerResultado) {
+				
+				mostrarResultado();
+				primerResultado = true;
+			} else {
+				resultadoConversion.setText(setResultado());
+			}
 		} else {
-			resultadoConversion.setText(valor.getText());
+			JOptionPane.showMessageDialog(null, "Valor no valido");
 		}
 		
 		setVisible(false);
 		setVisible(true);
-		verificarValor(valor.getText());
 	}
 	
 	private boolean verificarValor(String valor) {
@@ -85,7 +86,6 @@ public class PanelConversor extends JPanel implements ActionListener {
 			Double.parseDouble(valor);
 			return true;
 		} catch (Exception ex) {
-			JOptionPane.showMessageDialog(null, "Valor no valido");
 			return false;
 		}
 	}
@@ -94,10 +94,22 @@ public class PanelConversor extends JPanel implements ActionListener {
 		resultadoLabel = new JLabel("Resultado");
 		resultadoLabel.setBounds(450, 150, 200, 50);
 		add(resultadoLabel);
-		resultadoConversion = new JLabel(valor.getText());
+		resultadoConversion = new JLabel(setResultado());
 		resultadoConversion.setBounds(450, 250, 200, 50);
 		add(resultadoConversion);
 	}
 
-
+	public String setResultado() {
+		int numA = 99, numDe = 99;
+		for (EnumTemperaturas temp: EnumTemperaturas.values()) {
+			if (listaEnumA.getSelectedIndex() == temp.ordinal()) {
+				numA = listaEnumA.getSelectedIndex();
+			}
+			if (listaEnumDe.getSelectedIndex() == temp.ordinal()) {
+				numDe = listaEnumDe.getSelectedIndex();
+			}
+		}
+		return conversion(numDe, numA, valor.getText());
+	}
+	public abstract String conversion(int de, int a, String valor);
 }
