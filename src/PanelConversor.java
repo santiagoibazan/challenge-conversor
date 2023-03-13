@@ -1,7 +1,6 @@
 import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.math.BigDecimal;
 
 import javax.swing.*;
 
@@ -31,6 +30,7 @@ public abstract class PanelConversor extends JPanel implements ActionListener {
 		listaEnumA = new JComboBox<E>();
 		
 		setLayout(null);
+		
 		
 		for (E a: tipoEnum) {
 			listaEnumDe.addItem(a);
@@ -62,9 +62,7 @@ public abstract class PanelConversor extends JPanel implements ActionListener {
 	}
 
 	@Override
-	public void actionPerformed(ActionEvent e) {
-		System.out.println(new BigDecimal("1").multiply(new BigDecimal("0.001")));
-		
+	public void actionPerformed(ActionEvent e) {		
 		if (verificarValor(valor.getText())) {
 			if (!primerResultado) {
 				
@@ -99,17 +97,7 @@ public abstract class PanelConversor extends JPanel implements ActionListener {
 		add(resultadoConversion);
 	}
 
-	public String setResultado() {
-		int numA = 99, numDe = 99;
-		for (EnumTemperaturas temp: EnumTemperaturas.values()) {
-			if (listaEnumA.getSelectedIndex() == temp.ordinal()) {
-				numA = listaEnumA.getSelectedIndex();
-			}
-			if (listaEnumDe.getSelectedIndex() == temp.ordinal()) {
-				numDe = listaEnumDe.getSelectedIndex();
-			}
-		}
-		return conversion(numDe, numA, valor.getText());
-	}
+	public abstract String setResultado();
 	public abstract String conversion(int de, int a, String valor);
+
 }

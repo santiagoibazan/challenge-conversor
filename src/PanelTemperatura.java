@@ -52,6 +52,19 @@ public class PanelTemperatura extends PanelConversor {
 		}
 		return "Algo salio mal xD";
 	}
-	
+
+	@Override
+	public String setResultado() {
+			int numA = 99, numDe = 99;
+			for (EnumTemperaturas array: EnumTemperaturas.values()) {
+				if (listaEnumA.getSelectedIndex() == array.ordinal()) {
+					numA = listaEnumA.getSelectedIndex();
+				}
+				if (listaEnumDe.getSelectedIndex() == array.ordinal()) {
+					numDe = listaEnumDe.getSelectedIndex();
+				}
+			}
+			return conversion(numDe, numA, valor.getText());
+		}	
 
 }

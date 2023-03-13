@@ -15,12 +15,9 @@ public class PanelLongitud extends PanelConversor {
 		String valorLongA = "";
 		String valorLongDe  = "";
 		for (EnumLongitud index: EnumLongitud.values()) {
-			System.out.println(index.ordinal());
-			System.out.println(a);
 			if (index.ordinal() == a) {
 
 				valorLongA = index.getValor();
-				System.out.println(valorLongA);
 			}
 			if(index.ordinal() == de) {
 				valorLongDe = index.getValor();
@@ -47,5 +44,20 @@ public class PanelLongitud extends PanelConversor {
 	private BigDecimal convertirAMetro(String valorLong, String valor) {
 		return new BigDecimal(valor).divide(new BigDecimal(valorLong), 3, RoundingMode.UP);
 	}
+
+	@Override
+	public String setResultado() {
+		int numA = 99, numDe = 99;
+		for (EnumLongitud array: EnumLongitud.values()) {
+			if (listaEnumA.getSelectedIndex() == array.ordinal()) {
+				numA = listaEnumA.getSelectedIndex();
+			}
+			if (listaEnumDe.getSelectedIndex() == array.ordinal()) {
+				numDe = listaEnumDe.getSelectedIndex();
+			}
+		}
+		return conversion(numDe, numA, valor.getText());
+	}
+		
 
 }
