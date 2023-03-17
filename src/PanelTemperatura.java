@@ -20,7 +20,7 @@ public class PanelTemperatura extends PanelConversor {
 		if (de == 0 && a == de) {
 			return valor;
 		} else if (de == 0 && a == 1) {
-			return valorAux.multiply(new BigDecimal("9")).divide(new BigDecimal("5")).add(new BigDecimal("32")).toString();
+			return valorAux.multiply(new BigDecimal("9")).divide(new BigDecimal("5"), 2, RoundingMode.HALF_EVEN).add(new BigDecimal("32")).toString();
 		} else if(de == 0 && a == 2) {
 			return valorAux.add(new BigDecimal("273.15")).toString();
 		} 
@@ -29,7 +29,7 @@ public class PanelTemperatura extends PanelConversor {
 			return valor;
 		} else if (de == 1) {
 			valorAux = valorAux.subtract(new BigDecimal("32"));
-			aux = new BigDecimal("5").divide(new BigDecimal("9"), 3, RoundingMode.UP);
+			aux = new BigDecimal("5").divide(new BigDecimal("9"), 2, RoundingMode.HALF_EVEN);
 			valorAux = valorAux.multiply(aux);
 			if (a == 0) {
 				return valorAux.toString();
@@ -47,10 +47,10 @@ public class PanelTemperatura extends PanelConversor {
 				return valorAux.toString();
 			}
 			if (a == 1) {
-				return valorAux.multiply(new BigDecimal("9")).divide(new BigDecimal("5")).add(new BigDecimal("32")).toString();
+				return valorAux.multiply(new BigDecimal("9")).divide(new BigDecimal("5"), 2, RoundingMode.HALF_EVEN).add(new BigDecimal("32")).toString();
 			}
 		}
-		return "Algo salio mal xD";
+		return "Algo salio mal!";
 	}
 
 	@Override
