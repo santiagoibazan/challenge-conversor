@@ -48,15 +48,17 @@ public class PanelLongitud extends PanelConversor {
 	@Override
 	public String setResultado() {
 		int numA = 99, numDe = 99;
+		String nombre = "";
 		for (EnumLongitud array: EnumLongitud.values()) {
 			if (listaEnumA.getSelectedIndex() == array.ordinal()) {
 				numA = listaEnumA.getSelectedIndex();
+				nombre = array.name();
 			}
 			if (listaEnumDe.getSelectedIndex() == array.ordinal()) {
 				numDe = listaEnumDe.getSelectedIndex();
 			}
 		}
-		return conversion(numDe, numA, valor.getText());
+		return conversion(numDe, numA, valor.getText()) + " " + nombre;
 	}
 		
 

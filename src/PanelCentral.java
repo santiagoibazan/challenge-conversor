@@ -1,4 +1,4 @@
-import java.awt.Color;
+//import java.awt.Color;
 
 import javax.swing.*;
 
@@ -11,9 +11,9 @@ public class PanelCentral extends JPanel {
 	
 	
 	private JLabel opcionesLabel = new JLabel("Elija una de las opciones");
-	private JLabel monedaLabel = new JLabel("Moneda: convertir el valor de una moneda a otra");
-	private JLabel tempLabel = new JLabel("Temperatura : convertir a temperaturas celcius, farenheit o kelvin");
-	private JLabel longitudLabel = new JLabel("Longitudes: convertir metros, centimetros, yardas, etc");	
+	private JLabel monedaLabel = new JLabel("Conversor de divisas: ARS, USD, JPY, EUR, etc.");
+	private JLabel tempLabel = new JLabel("Conversor de temperaturas: Celcius, Farenheit, Kelvin");
+	private JLabel longitudLabel = new JLabel("Conversor de Longitud: Metros, Centimetros, Yardas, Millas, etc");	
 	
 	public PanelCentral() {
 		setLayout(null);
@@ -28,7 +28,7 @@ public class PanelCentral extends JPanel {
 		add(tempLabel);
 		add(longitudLabel);
 		
-		setBackground(Color.WHITE);
+		//setBackground(Color.WHITE);
 	}
 	
 

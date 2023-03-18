@@ -42,6 +42,7 @@ public abstract class PanelConversor extends JPanel implements ActionListener {
 		labelDe.setBounds(60, 100, 100, 50);
 		listaEnumDe.setBounds(170, 100, 200, 50);
 		labelCantidad.setBounds(60, 200, 100, 50);
+		valor.setFont(new Font("Arial", Font.ITALIC, 14));
 		valor.setBounds(170, 200, 200, 50);
 		labelA.setBounds(60, 300, 100, 50);
 		listaEnumA.setBounds(170, 300, 200, 50);
@@ -89,11 +90,13 @@ public abstract class PanelConversor extends JPanel implements ActionListener {
 	}
 	
 	private void mostrarResultado() {
-		resultadoLabel = new JLabel("Resultado");
-		resultadoLabel.setBounds(450, 150, 200, 50);
+		resultadoLabel = new JLabel("Resultado de Conversion");
+		resultadoLabel.setFont(new Font("Arial", Font.BOLD, 16));
+		resultadoLabel.setBounds(450, 190, 200, 50);
 		add(resultadoLabel);
 		resultadoConversion = new JLabel(setResultado());
-		resultadoConversion.setBounds(450, 250, 200, 50);
+		resultadoConversion.setFont(new Font("Arial", Font.BOLD, 18));
+		resultadoConversion.setBounds(450, 230, 200, 50);
 		add(resultadoConversion);
 	}
 

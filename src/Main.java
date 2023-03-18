@@ -9,7 +9,7 @@ import java.awt.event.ActionListener;
 import javax.imageio.ImageIO;
 import javax.swing.*;
 
-public class Ventana extends JFrame implements ActionListener{
+public class Main extends JFrame implements ActionListener{
 
 	private static final long serialVersionUID = 1L;
 	JPanel panelTitulo = new JPanel();
@@ -20,12 +20,13 @@ public class Ventana extends JFrame implements ActionListener{
 	JButton tempBoton = new JButton("Temperatura");
 	JButton longitudBoton = new JButton("Longitud");
 	
-	JPanel panelCentral = new PanelCentral();
+
 	JPanel panelMoneda = new PanelMoneda();
 	JPanel panelTemperatura = new PanelTemperatura();
 	JPanel panelLongitud = new PanelLongitud();
+	JPanel panelCentral = new PanelCentral();
 
-	private Ventana() {
+	private Main() {
 		super("Super Conversor 3000");
 	}	
 	
@@ -119,7 +120,7 @@ public class Ventana extends JFrame implements ActionListener{
 	    SwingUtilities.invokeLater(new Runnable() {
 	        @Override
 	        public void run() {
-	            new Ventana().ejecutarVentana();
+	            new Main().ejecutarVentana();
 	        }
 	    });
 	}

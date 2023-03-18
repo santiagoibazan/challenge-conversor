@@ -1,9 +1,12 @@
 import java.math.BigDecimal;
 import java.math.RoundingMode;
 
+//import javax.swing.JLabel;
+
 public class PanelMoneda extends PanelConversor{
 
 	private static final long serialVersionUID = 1L;	
+	//private JLabel opcionValores = new JLabel("Elija los valores a utilizar en la conversion");
 	
 	public PanelMoneda() {
 		super("Monedas", EnumMonedas.values());
@@ -50,15 +53,17 @@ public class PanelMoneda extends PanelConversor{
 	public String setResultado() {
 		{
 			int numA = 99, numDe = 99;
+			String monedaA = "";
 			for (EnumMonedas array: EnumMonedas.values()) {
 				if (listaEnumA.getSelectedIndex() == array.ordinal()) {
 					numA = listaEnumA.getSelectedIndex();
+					monedaA = array.getCodigo();
 				}
 				if (listaEnumDe.getSelectedIndex() == array.ordinal()) {
 					numDe = listaEnumDe.getSelectedIndex();
 				}
 			}
-			return conversion(numDe, numA, valor.getText());
+			return conversion(numDe, numA, valor.getText()) + " "  + monedaA;
 		}
 		
 	}
